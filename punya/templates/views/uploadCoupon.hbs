@@ -1,0 +1,140 @@
+{{>header}}
+{{>navbar}}
+
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100%;
+        background-color: rgba(255, 245, 241, 1);
+    }
+
+    .container {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-section {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 500px;
+    }
+
+    .form-section h1 {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        color: #105412;
+    }
+
+    .form-section form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-section input,
+    .form-section select {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-section input:focus,
+    .form-section select:focus {
+        border-color: #017b2a;
+    }
+
+    .form-section button {
+        padding: 0.5rem;
+        background-color: #105412;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+
+    .form-section button:hover {
+        background-color: #017b2a;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h1>Sell</h1>
+            <form id="sellForm">
+                <div class="category">
+                    <label for="category">Category:</label>
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                        <option value="travel">Travel</option>
+                        <option value="food">Food</option>
+                        <option value="pharmacy">Pharmacy</option>
+                        <option value="shopping">Shopping</option>
+                    </select>
+                </div>
+                <div class="coupon-code">
+                    <label for="coupon">Coupon Code:</label>
+                    <input type="text" id="coupon" placeholder="Enter Coupon Code" required>
+                </div>
+                <div class="description">
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" placeholder="Enter Description" required>
+                </div>
+                <div class="percent-off">
+                    <label for="percentOff">Discount (%):</label>
+                    <input type="number" id="percentOff" placeholder="Enter Discount Percentage" min="1" max="100" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+{{>footer}}
+
+<script>
+    document.getElementById("sellForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const category = document.getElementById("category").value;
+        const coupon = document.getElementById("coupon").value;
+        const description = document.getElementById("description").value;
+        const percentOff = document.getElementById("percentOff").value;
+
+        try {
+            const response = await fetch("/sell", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    category,
+                    code: coupon,
+                    description,
+                    percentOff,
+                }),
+            });
+
+            if (response.ok) {
+                alert("Coupon successfully added!");
+                document.getElementById("sellForm").reset();
+            } else {
+                const error = await response.json();
+                alert(`Error: ${error.message}`);
+            }
+        } catch (err) {
+            console.error("Error:", err);
+            alert("An unexpected error occurred. Please try again.");
+        }
+    });
+</script>

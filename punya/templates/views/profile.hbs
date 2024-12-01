@@ -1,0 +1,77 @@
+{{>header}}
+{{>navbar}}
+
+<style>
+    .profile-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    .profile-container h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .profile-field {
+        margin-bottom: 15px;
+    }
+
+    .profile-field label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .profile-field span {
+        display: block;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btn-container {
+        text-align: center;
+    }
+
+    .btn-container a {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn-container a:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="profile-container">
+    <h2>User Profile</h2>
+    <div class="profile-field">
+        <label for="username">Username:</label>
+        <span id="username">{{username}}</span>
+    </div>
+    <div class="profile-field">
+        <label for="email">Email:</label>
+        <span id="email">{{email}}</span>
+    </div>
+    <div class="profile-field">
+        <label for="cart">Cart Items:</label>
+        <span id="cart">{{#if cart.length}}{{cart.length}} items{{else}}No items in cart{{/if}}</span>
+    </div>
+    <div class="btn-container">
+        <a href="/cart">View Cart</a>
+    </div>
+</div>

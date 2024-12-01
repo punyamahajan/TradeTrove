@@ -1,0 +1,84 @@
+{{>header}}
+{{>navbar}}
+
+<style>
+    .cart-container {
+        padding: 20px;
+        background-color: #fff;
+    }
+
+    .cart-item {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px 0;
+    }
+
+    .checkout-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<section class="cart-container">
+    <h2>Your Cart</h2>
+    <div class="cart-items">
+        {{#each coupons}}
+            <div class="cart-item" data-coupon-id="{{_id}}">
+                <h3>Code: {{code}}</h3>
+                <p><strong>Description:</strong> {{description}}</p>
+                <p><strong>Discount:</strong> {{percentOff}}</p>
+                <button class="remove-btn">Remove</button>
+            </div>
+        {{/each}}
+    </div>
+    <button class="checkout-btn">Checkout</button>
+</section>
+
+{{>footer}}
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const removeButtons = document.querySelectorAll('.remove-btn');
+
+        removeButtons.forEach(button => {
+            button.addEventListener('click', async function (event) {
+                const cartItem = event.target.closest('.cart-item');
+                const couponId = cartItem.getAttribute('data-coupon-id');
+
+                try {
+                    const response = await fetch(`/removeFromCart/${couponId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + localStorage.getItem('token'), // Add your token retrieval logic
+                        },
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        // Remove the item from the frontend
+                        cartItem.remove();
+                        alert(result.message);
+                    } else {
+                        alert(result.message || 'Failed to remove coupon from cart');
+                    }
+                } catch (error) {
+                    console.error('Error removing item from cart:', error);
+                    alert('An error occurred');
+                }
+            });
+        });
+    });
+</script>

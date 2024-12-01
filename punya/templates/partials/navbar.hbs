@@ -1,0 +1,221 @@
+<style>
+    /* General Styles */
+    #navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 5px;
+        /* Adjust padding as needed */
+        background-color: rgba(255, 245, 241, 1);
+        /* Corrected the alpha channel value */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        /* Optional: Adds subtle shadow for depth */
+        align-items: center;
+        /* Ensures vertical alignment of navbar items */
+    }
+
+    #contents {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #contents p {
+        font-size: 15px;
+        /* Reduced from 20px, adjust as needed */
+        margin: 10px 20px;
+        /* Adjust margins if necessary for better alignment */
+    }
+
+    p {
+        margin: 15px;
+        margin-right: 45px;
+        font-size: 20px;
+        font-family: 'Trebuchet MS', Arial, sans-serif;
+    }
+
+    #info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: -30px;
+        flex-wrap: wrap;
+    }
+
+    .text {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 22px;
+        margin-left: 140px;
+        margin-top: 50px;
+    }
+
+    pre {
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #1f5e21;
+    }
+
+    .login-btn {
+        width: 150px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-top: 5px;
+        /* Adjust this to 0 for closer positioning */
+        margin-left: 0;
+        /* Center align with the text */
+        align-self: flex-start;
+    }
+
+    #triangles {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 2px;
+        width: 100%;
+        height: 150px;
+    }
+
+    .image img {
+        height: 450px;
+    }
+
+    img#ticket-logo {
+        height: 60px;
+        /* Adjusted size */
+    }
+
+    img#cart,
+    img#profile {
+        height: 30px;
+        /* Set same size for both */
+    }
+
+    #info .image {
+        margin-top: 50px;
+        /* Increase this value as needed */
+    }
+
+    /* Navigation Button Styles */
+    button {
+        background-color: rgba(255, 245, 241, 1);
+        /* Background color */
+        border: 2px solid rgba(223, 163, 163, 0.5);
+        /* Border color */
+        border-radius: 12px;
+        /* Rounded corners */
+        padding: 8px 10px;
+        /* Padding inside the button */
+        margin: 5px;
+        /* Space between buttons */
+        cursor: pointer;
+        /* Pointer cursor on hover */
+        transition: background-color 0.3s, color 0.3s;
+        /* Smooth transition for background color */
+        font-size: 10px;
+        /* Adjust font size as needed */
+    }
+
+    button:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        /* Background color on hover */
+        color: white;
+        /* Change text color on hover */
+    }
+
+    /* Shadow effect for h2 */
+    .text h2 {
+        text-shadow: 2px 2px 4px rgba(55, 52, 52, 0.5);
+        /* Shadow effect */
+        font-size: 40px;
+    }
+
+    /* Responsive Design Media Queries */
+    @media screen and (max-width: 768px) {
+        #navbar {
+            flex-direction: column;
+        }
+
+        #contents {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #info {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .text {
+            margin-left: 0;
+        }
+
+        .login-btn {
+            margin-left: 0;
+            margin-top: 5px;
+            /* Adjust if necessary */
+        }
+
+        .image img {
+            height: 250px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        p {
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        .text h2 {
+            font-size: 18px;
+        }
+
+        pre {
+            font-size: 12px;
+        }
+
+        .login-btn {
+            width: 120px;
+            padding: 8px 16px;
+            margin-top: 5px;
+            /* Adjust if necessary */
+        }
+
+        .image img {
+            height: 180px;
+        }
+
+        #triangles img {
+            height: 50px;
+            height: 200px;
+        }
+        .fa-solid{
+            color: black;
+        }
+    }
+</style>
+<div id="navbar">
+    <a href="/"><span><img id="ticket-logo" src="./images/ticket.png" alt="Ticket Logo"></span></a>
+    <div id="contents">
+        <span><button><a href="travelCoupon">Travel</a></button></span>
+        <span><button><a href="foodCoupon">Food</a></button></span>
+        <span><button><a href="shoppingCoupon">Shopping</a></button></span>
+        <span><button><a href="pharmacyCoupon">Pharmacy</a></button></span>
+        <span><button><a href="uploadCoupon">Sell</a></button></span>
+        <span>
+            <a href="./cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+        </span>
+        <span>
+            <a href="profile">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </span>
+    </div>
+</div>

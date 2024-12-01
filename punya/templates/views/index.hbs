@@ -1,0 +1,41 @@
+{{>header}}
+{{>navbar}}
+
+<div id="info">
+    <div class="text">
+        <h2>Welcome to Trade Trove—Your<br>Go-To Coupon Exchange<br>Community!</h2>
+        <pre>Boost your shopping experience at Trade Trove, where you can 
+share, discover, and exchange coupons to save on everything from 
+dining to gadgets. Connect with fellow deal seekers, use coupons 
+others have shared, and upload your own.</pre>
+        <button class="login-btn" id="logout-btn">Log Out</button>
+    </div>
+
+    <div class="image">
+        <img src="./images/phone.png" alt="Smartphone with coupon cards">
+    </div>
+</div>
+
+{{>footer}}
+
+<script>
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+        try {
+            // Send logout request to the server
+            const response = await fetch('/logout', {
+                method: 'GET',
+                credentials: 'include', // Ensures cookies are sent with the request
+            });
+
+            if (response.ok) {
+                alert('You have been successfully logged out!');
+                window.location.href = '/login'; // Redirect to login page
+            } else {
+                alert('Logout failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+            alert('An unexpected error occurred. Please try again.');
+        }
+    });
+</script>
